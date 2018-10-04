@@ -23,11 +23,38 @@ class RookCardView : UIView {
 
     // MARK: - Properties
 
-    @IBInspectable var isFaceUp: Bool = true
-    @IBInspectable var rank: Int = 1
-    @IBInspectable var suit: String = "green"
+    var card = RookCard()
 
     // MARK: - Computed properties
+
+    @IBInspectable var isFaceUp: Bool {
+        get {
+            return card.isFaceUp
+        }
+        set {
+            card.isFaceUp = newValue
+        }
+    }
+
+    @IBInspectable var rank: Int {
+        get {
+            return card.rank
+        }
+        set {
+            card.rank = newValue
+        }
+    }
+
+    @IBInspectable var suit: String {
+        get {
+            return card.suit.description
+        }
+        set {
+            if let newSuit = RookCard.Suit(rawValue: newValue) {
+                card.suit = newSuit
+            }
+        }
+    }
 
     // See slides for explanations of the uses of these computed properties
 
@@ -88,11 +115,43 @@ class RookCardView : UIView {
         UIRectFill(bounds)
     }
 
+    private func drawCenterImage() {
+        guard let rookImage = UIImage(named: Card.rookImageName) else {
+            return
+        }
+
+        let width = bounds.width - 2 * centerImageMargin
+        let rookImageRect = CGRect(x: centerImageMargin,
+                                   y: (bounds.height - width) / 2,
+                                   width: width,
+                                   height: width)
+        rookImage.draw(in: rookImageRect)
+    }
+
+    private func drawCenterSquare() {
+
+    }
+
+    private func drawCenterText() {
+
+    }
+
+    private func drawCornerText() {
+
+    }
+
     private func drawFaceDown() {
 
     }
 
     private func drawFaceUp() {
+        if card.suit == RookCard.Suit.rook {
+            drawCenterImage()
+        } else {
+            drawCenterText()
+            drawCenterSquare()
+        }
 
+        drawCornerText()
     }
 }
