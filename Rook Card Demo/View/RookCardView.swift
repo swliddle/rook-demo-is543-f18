@@ -18,6 +18,13 @@ class RookCardView : UIView {
         static let cornerRookImageName = "RookSquareTurquoise"
         static let fontName = "Palatino-Bold"
         static let rookImageName = "RookSquare"
+        static let suitColors: [RookCard.Suit : UIColor] = [
+            .rook   : UIColor(r:  34, g: 193, b: 196),
+            .red    : UIColor(r: 237, g:  37, b:  50),
+            .green  : UIColor(r:  36, g: 193, b:  80),
+            .yellow : UIColor(r: 242, g: 199, b:  58),
+            .black  : UIColor.black
+        ]
         static let underlinedRanks = [ 6, 9 ]
     }
 
@@ -137,6 +144,25 @@ class RookCardView : UIView {
     }
 
     private func drawCornerText() {
+        let font = rookCardFont(ofSize: centerFontSize)
+        let rankText = NSAttributedString(string: "\(rank)",
+            attributes: [
+                .font: font,
+                .foregroundColor: suitColor()
+            ])
+        var textBounds = CGRect.zero
+
+        textBounds.size = rankText.size()
+        textBounds.origin = CGPoint(x: (bounds.width - textBounds.width) / 2,
+                                    y: (bounds.height - textBounds.height) / 2)
+        rankText.draw(in: textBounds)
+
+        if Card.underlinedRanks.contains(rank) {
+            drawCenterUnderline(using: textBounds, with: font)
+        }
+    }
+
+    private func drawCenterUnderline(using textBounds: CGRect, with font: UIFont) {
 
     }
 
@@ -153,5 +179,23 @@ class RookCardView : UIView {
         }
 
         drawCornerText()
+    }
+
+    // MARK: - Helpers
+
+    private func rookCardFont(ofSize fontSize: CGFloat) -> UIFont {
+        if let font = UIFont(name: Card.fontName, size: fontSize) {
+            return font
+        }
+
+        return UIFont.preferredFont(forTextStyle: .body)
+    }
+
+    private func suitColor() -> UIColor {
+        if let color = Card.suitColors[card.suit] {
+            return color
+        }
+
+        return UIColor.black
     }
 }
