@@ -118,8 +118,10 @@ class RookCardView : UIView {
         let roundedRect = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius)
 
         roundedRect.addClip()
+        _ = pushContext()
         UIColor.white.setFill()
         UIRectFill(bounds)
+        popContext()
     }
 
     private func drawCenterImage() {
@@ -163,7 +165,17 @@ class RookCardView : UIView {
     }
 
     private func drawCenterUnderline(using textBounds: CGRect, with font: UIFont) {
+        let underline = UIBezierPath()
+        let yOffset = textBounds.origin.y + textBounds.height + font.descender + underlineOffset
 
+        _ = pushContext()
+        suitColor().setStroke()
+        underline.lineWidth = underlineStrokeWidth
+        underline.move(to: CGPoint(x: textBounds.origin.x + underlineInset, y: yOffset))
+        underline.addLine(to: CGPoint(x: textBounds.origin.x + textBounds.width - underlineInset,
+                                      y: yOffset))
+        underline.stroke()
+        popContext()
     }
 
     private func drawFaceDown() {
@@ -182,6 +194,18 @@ class RookCardView : UIView {
     }
 
     // MARK: - Helpers
+
+    private func popContext() {
+        UIGraphicsGetCurrentContext()?.restoreGState()
+    }
+
+    private func pushContext() -> CGContext? {
+        let context = UIGraphicsGetCurrentContext()
+
+        context?.saveGState()
+
+        return context
+    }
 
     private func rookCardFont(ofSize fontSize: CGFloat) -> UIFont {
         if let font = UIFont(name: Card.fontName, size: fontSize) {
