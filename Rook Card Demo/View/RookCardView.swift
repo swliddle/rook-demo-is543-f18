@@ -138,14 +138,23 @@ class RookCardView : UIView {
     }
 
     private func drawCenterSquare() {
+        let square = UIBezierPath()
+        let width = bounds.width - (2.0 * squareMargin)
+        let yOffset = (bounds.height - width) / 2
 
+        _ = pushContext()
+        suitColor().setStroke()
+        square.lineWidth = squareStrokeWidth
+        square.move(to: CGPoint(x: squareMargin, y: yOffset))
+        square.addLine(to: CGPoint(x: squareMargin + width, y: yOffset))
+        square.addLine(to: CGPoint(x: squareMargin + width, y: yOffset + width))
+        square.addLine(to: CGPoint(x: squareMargin, y: yOffset + width))
+        square.close()
+        square.stroke()
+        popContext()
     }
 
     private func drawCenterText() {
-
-    }
-
-    private func drawCornerText() {
         let font = rookCardFont(ofSize: centerFontSize)
         let rankText = NSAttributedString(string: "\(rank)",
             attributes: [
@@ -161,6 +170,40 @@ class RookCardView : UIView {
 
         if Card.underlinedRanks.contains(rank) {
             drawCenterUnderline(using: textBounds, with: font)
+        }
+    }
+
+    private func drawCornerText() {
+        let rankFont = rookCardFont(ofSize: cornerRankFontSize)
+        let suitFont = rookCardFont(ofSize: cornerSuitFontSize)
+        let rankText = NSAttributedString(string: "\(rank)", attributes: [
+            .font : rankFont,
+            .foregroundColor : suitColor()
+            ])
+        let suitText = NSAttributedString(string: "\(suit)", attributes: [
+            .font : suitFont,
+            .foregroundColor : suitColor()
+            ])
+
+        // NOTE: This y calculation removes the white space above the rank text.
+        // (Try using just cornerYOffset as the rankYOffset and you'll see what I mean.)
+        let rankYOffset = cornerYOffset - rankFont.lineHeight + rankFont.capHeight -
+            rankFont.descender
+        let suitXOffset = cornerXOffset + rankText.size().width + cornerSuitOffset
+        let rankOrigin = CGPoint(x: cornerXOffset, y: rankYOffset)
+        let suitOrigin = CGPoint(x: suitXOffset, y: cornerYOffset)
+
+        if card.suit == RookCard.Suit.rook {
+            if let rookImage = UIImage(named: Card.cornerRookImageName) {
+                let rookRect = CGRect(x: cornerXOffset, y: cornerYOffset,
+                                      width: cornerImageWidth, height: cornerImageWidth)
+
+                rookImage.draw(in: rookRect)
+                suitText.draw(at: suitOrigin)
+            }
+        } else {
+            rankText.draw(at: rankOrigin)
+            suitText.draw(at: suitOrigin)
         }
     }
 
