@@ -200,10 +200,18 @@ class RookCardView : UIView {
 
                 rookImage.draw(in: rookRect)
                 suitText.draw(at: suitOrigin)
+                pushContextAndRotateUpsideDown()
+                rookImage.draw(in: rookRect)
+                suitText.draw(at: suitOrigin)
+                popContext()
             }
         } else {
             rankText.draw(at: rankOrigin)
             suitText.draw(at: suitOrigin)
+            pushContextAndRotateUpsideDown()
+            rankText.draw(at: rankOrigin)
+            suitText.draw(at: suitOrigin)
+            popContext()
         }
     }
 
@@ -222,7 +230,7 @@ class RookCardView : UIView {
     }
 
     private func drawFaceDown() {
-
+        UIImage(named: Card.backImageName)?.draw(in: bounds)
     }
 
     private func drawFaceUp() {
@@ -248,6 +256,13 @@ class RookCardView : UIView {
         context?.saveGState()
 
         return context
+    }
+
+    private func pushContextAndRotateUpsideDown() {
+        let context = pushContext()
+
+        context?.translateBy(x: bounds.width, y: bounds.height)
+        context?.rotate(by: CGFloat(Double.pi))
     }
 
     private func rookCardFont(ofSize fontSize: CGFloat) -> UIFont {
