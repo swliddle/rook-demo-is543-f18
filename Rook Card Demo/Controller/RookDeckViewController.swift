@@ -22,6 +22,21 @@ class RookDeckViewController : UIViewController {
 
     // MARK: - Outlets
 
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    // MARK: - Actions
+
+    @IBAction func showAllCards(_ sender: UIBarButtonItem) {
+        setCardsFaceUp(true)
+        collectionView.reloadData()
+    }
+
+    @IBAction func shuffle(_ sender: UIBarButtonItem) {
+        deck.shuffle()
+        setCardsFaceUp(false)
+        collectionView.reloadData()
+    }
+
     // MARK: - Helpers
 
     private func flipCard(inCell rookCardCell: RookCardCell) {
@@ -32,6 +47,12 @@ class RookDeckViewController : UIViewController {
                               rookCardCell.rookCardView.isFaceUp.toggle()
                               rookCardCell.rookCardView.setNeedsDisplay()
                           })
+    }
+
+    private func setCardsFaceUp(_ isFaceUp: Bool) {
+        for i in 0 ..< deck.count {
+            deck[i].isFaceUp = isFaceUp
+        }
     }
 }
 

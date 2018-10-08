@@ -8,10 +8,6 @@
 
 import UIKit
 
-struct Animation {
-    static let Duration = 0.5
-}
-
 class RookCardViewController : UIViewController {
 
     // MARK: - Outlets

@@ -87,7 +87,19 @@
                                     <constraint firstAttribute="height" constant="44" id="jfj-2W-pu6"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Item" id="U9C-aA-Iet"/>
+                                    <barButtonItem title="Shuffle" id="U9C-aA-Iet">
+                                        <connections>
+                                            <action selector="shuffle:" destination="Zxa-gV-cwI" id="DpA-uj-XEv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="u9l-Nk-V1h"/>
+                                    <barButtonItem title="Show All" id="GZj-0V-p3j">
+                                        <connections>
+                                            <action selector="showAllCards:" destination="Zxa-gV-cwI" id="ssS-zv-RUx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bCy-kE-TwW"/>
+                                    <barButtonItem title="Toggle Size" id="v62-C8-ngA"/>
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dYK-T3-cpO">
@@ -145,6 +157,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wd2-sG-QXS"/>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="dYK-T3-cpO" id="hjd-rC-jza"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iY8-Z2-zye" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

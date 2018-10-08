@@ -18,6 +18,7 @@
 		3F9F05312166C0CF00A60063 /* UIColor+rgb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F05302166C0CF00A60063 /* UIColor+rgb.swift */; };
 		3FC48625216BED79004F6BAC /* RookCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC48624216BED79004F6BAC /* RookCardCell.swift */; };
 		3FC48627216BEE0A004F6BAC /* RookDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC48626216BEE0A004F6BAC /* RookDeckViewController.swift */; };
+		3FC4862B216BF844004F6BAC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4862A216BF844004F6BAC /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		3F9F05302166C0CF00A60063 /* UIColor+rgb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+rgb.swift"; sourceTree = "<group>"; };
 		3FC48624216BED79004F6BAC /* RookCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookCardCell.swift; sourceTree = "<group>"; };
 		3FC48626216BEE0A004F6BAC /* RookDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookDeckViewController.swift; sourceTree = "<group>"; };
+		3FC4862A216BF844004F6BAC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 		3F9F0525216691FA00A60063 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3FC4862A216BF844004F6BAC /* Constants.swift */,
 				3F9F05282166922400A60063 /* RookCardViewController.swift */,
 				3FC48626216BEE0A004F6BAC /* RookDeckViewController.swift */,
 			);
@@ -193,6 +196,7 @@
 				3F9F052F216693B600A60063 /* RookCardView.swift in Sources */,
 				3F9F052D216692E900A60063 /* RookDeck.swift in Sources */,
 				3FC48625216BED79004F6BAC /* RookCardCell.swift in Sources */,
+				3FC4862B216BF844004F6BAC /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
