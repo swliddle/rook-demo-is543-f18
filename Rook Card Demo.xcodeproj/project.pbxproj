@@ -16,6 +16,8 @@
 		3F9F052D216692E900A60063 /* RookDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F052C216692E900A60063 /* RookDeck.swift */; };
 		3F9F052F216693B600A60063 /* RookCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F052E216693B600A60063 /* RookCardView.swift */; };
 		3F9F05312166C0CF00A60063 /* UIColor+rgb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F05302166C0CF00A60063 /* UIColor+rgb.swift */; };
+		3FC48625216BED79004F6BAC /* RookCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC48624216BED79004F6BAC /* RookCardCell.swift */; };
+		3FC48627216BEE0A004F6BAC /* RookDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC48626216BEE0A004F6BAC /* RookDeckViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		3F9F052C216692E900A60063 /* RookDeck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookDeck.swift; sourceTree = "<group>"; };
 		3F9F052E216693B600A60063 /* RookCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookCardView.swift; sourceTree = "<group>"; };
 		3F9F05302166C0CF00A60063 /* UIColor+rgb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+rgb.swift"; sourceTree = "<group>"; };
+		3FC48624216BED79004F6BAC /* RookCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookCardCell.swift; sourceTree = "<group>"; };
+		3FC48626216BEE0A004F6BAC /* RookDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RookDeckViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9F05282166922400A60063 /* RookCardViewController.swift */,
+				3FC48626216BEE0A004F6BAC /* RookDeckViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -93,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				3F9F0516216690F700A60063 /* Main.storyboard */,
+				3FC48624216BED79004F6BAC /* RookCardCell.swift */,
 				3F9F052E216693B600A60063 /* RookCardView.swift */,
 				3F9F05302166C0CF00A60063 /* UIColor+rgb.swift */,
 			);
@@ -179,12 +185,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FC48627216BEE0A004F6BAC /* RookDeckViewController.swift in Sources */,
 				3F9F0513216690F700A60063 /* AppDelegate.swift in Sources */,
 				3F9F052B2166926500A60063 /* RookCard.swift in Sources */,
 				3F9F05292166922400A60063 /* RookCardViewController.swift in Sources */,
 				3F9F05312166C0CF00A60063 /* UIColor+rgb.swift in Sources */,
 				3F9F052F216693B600A60063 /* RookCardView.swift in Sources */,
 				3F9F052D216692E900A60063 /* RookDeck.swift in Sources */,
+				3FC48625216BED79004F6BAC /* RookCardCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
