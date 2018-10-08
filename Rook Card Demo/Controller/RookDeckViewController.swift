@@ -22,6 +22,17 @@ class RookDeckViewController : UIViewController {
 
     // MARK: - Outlets
 
+    // MARK: - Helpers
+
+    private func flipCard(inCell rookCardCell: RookCardCell) {
+        UIView.transition(with: rookCardCell.rookCardView,
+                          duration: Animation.Duration,
+                          options: .transitionFlipFromLeft,
+                          animations: {
+                              rookCardCell.rookCardView.isFaceUp.toggle()
+                              rookCardCell.rookCardView.setNeedsDisplay()
+                          })
+    }
 }
 
 extension RookDeckViewController : UICollectionViewDataSource {
@@ -40,5 +51,14 @@ extension RookDeckViewController : UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return deck.count
+    }
+}
+
+extension RookDeckViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let rookCardCell = collectionView.cellForItem(at: indexPath) as? RookCardCell {
+            deck[indexPath.row].isFaceUp.toggle()
+            flipCard(inCell: rookCardCell)
+        }
     }
 }

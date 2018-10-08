@@ -8,13 +8,11 @@
 
 import UIKit
 
+struct Animation {
+    static let Duration = 0.5
+}
+
 class RookCardViewController : UIViewController {
-
-    // MARK: - Constants
-
-    private struct Animation {
-        static let Duration = 0.5
-    }
 
     // MARK: - Outlets
 
@@ -31,7 +29,6 @@ class RookCardViewController : UIViewController {
                           animations: {
                             self.rookCardView.card.isFaceUp.toggle()
                             self.rookCardView.setNeedsDisplay()
-                          },
-                          completion: nil)
+                          })
     }
 }
