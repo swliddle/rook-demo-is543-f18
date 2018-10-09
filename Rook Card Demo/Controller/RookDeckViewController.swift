@@ -23,6 +23,7 @@ class RookDeckViewController : UIViewController {
     // MARK: - Outlets
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewBottomConstraint: NSLayoutConstraint!
 
     // MARK: - Actions
 
@@ -35,6 +36,23 @@ class RookDeckViewController : UIViewController {
         deck.shuffle()
         setCardsFaceUp(false)
         collectionView.reloadData()
+    }
+
+    @IBAction func toggleSize(_ sender: Any) {
+        collectionView.layoutIfNeeded()
+
+        if collectionViewBottomConstraint.constant > 0 {
+            collectionViewBottomConstraint.constant = 0
+        } else {
+            collectionViewBottomConstraint.constant = collectionView.bounds.height / 2
+        }
+
+        UIView.animate(withDuration: Animation.Duration,
+                       delay: 0,
+                       options: [.curveEaseInOut],
+                       animations: {
+                           self.view.layoutIfNeeded()
+                       })
     }
 
     // MARK: - Helpers
@@ -56,6 +74,8 @@ class RookDeckViewController : UIViewController {
     }
 }
 
+// MARK: - Collection view data source
+
 extension RookDeckViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,6 +94,8 @@ extension RookDeckViewController : UICollectionViewDataSource {
         return deck.count
     }
 }
+
+// MARK: - Collection view delegate
 
 extension RookDeckViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

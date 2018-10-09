@@ -99,7 +99,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bCy-kE-TwW"/>
-                                    <barButtonItem title="Toggle Size" id="v62-C8-ngA"/>
+                                    <barButtonItem title="Toggle Size" id="v62-C8-ngA">
+                                        <connections>
+                                            <action selector="toggleSize:" destination="Zxa-gV-cwI" id="uSJ-30-Pfq"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dYK-T3-cpO">
@@ -159,6 +163,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="dYK-T3-cpO" id="hjd-rC-jza"/>
+                        <outlet property="collectionViewBottomConstraint" destination="e2a-P8-pWq" id="H5O-9t-aQU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iY8-Z2-zye" userLabel="First Responder" sceneMemberID="firstResponder"/>
