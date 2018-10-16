@@ -57,13 +57,18 @@ class RookDeckViewController : UIViewController {
 
     // MARK: - Helpers
 
-    private func flipCard(inCell rookCardCell: RookCardCell) {
+    private func flipCard(inCell rookCardCell: RookCardCell, at indexPath: IndexPath) {
         UIView.transition(with: rookCardCell.rookCardView,
                           duration: Animation.Duration,
                           options: .transitionFlipFromLeft,
                           animations: {
                               rookCardCell.rookCardView.isFaceUp.toggle()
                               rookCardCell.rookCardView.setNeedsDisplay()
+                          },
+                          completion: {
+                              _ in
+                              self.deck.remove(at: indexPath.row)
+                              self.collectionView.deleteItems(at: [indexPath])
                           })
     }
 
@@ -101,7 +106,7 @@ extension RookDeckViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let rookCardCell = collectionView.cellForItem(at: indexPath) as? RookCardCell {
             deck[indexPath.row].isFaceUp.toggle()
-            flipCard(inCell: rookCardCell)
+            flipCard(inCell: rookCardCell, at: indexPath)
         }
     }
 }
